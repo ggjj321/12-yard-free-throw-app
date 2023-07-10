@@ -94,6 +94,20 @@ class SelectModePage extends StatelessWidget {
                     ),
                   ],
                 ),
+                SizedBox(height: screenHeight * 0.05),
+                TextButton(
+                  onPressed: null,
+                  child: Text(
+                    'Training Start',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 30,
+                      foreground: Paint()
+                        ..shader = getLinearGradient(
+                            Colors.blue, Colors.purple, 0, 300),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
