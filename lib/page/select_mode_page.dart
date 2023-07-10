@@ -8,6 +8,8 @@ import 'package:free_throw_phone/Components/tweleve_grid_container.dart';
 class SelectModePage extends StatelessWidget {
   const SelectModePage({Key? key}) : super(key: key);
 
+  void doNothing() {}
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -40,6 +42,58 @@ class SelectModePage extends StatelessWidget {
                 SizedBox(height: screenHeight * 0.03),
                 TwelveGridContainer(
                     screenWidth: screenWidth, screenHeight: screenHeight),
+                SizedBox(height: screenHeight * 0.03),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      children: [
+                        Text(
+                          'Random Training',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 20,
+                            foreground: Paint()
+                              ..shader = getLinearGradient(
+                                  Colors.purple, Colors.blue, 0, 150),
+                          ),
+                        ),
+                        SizedBox(
+                          height: screenHeight * 0.03,
+                        ),
+                        const IconButton(
+                          iconSize: 50,
+                          icon: Icon(
+                            Icons.palette,
+                          ),
+                          tooltip: 'Choose Video',
+                          onPressed: null,
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          'Single Training',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 20,
+                            foreground: Paint()
+                              ..shader = getLinearGradient(
+                                  Colors.blue, Colors.purple, 150, 300),
+                          ),
+                        ),
+                        SizedBox(height: screenHeight * 0.03),
+                        const IconButton(
+                          iconSize: 50,
+                          icon: Icon(Icons.radio_button_checked),
+                          tooltip: 'Use Camera',
+                          onPressed: null,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
