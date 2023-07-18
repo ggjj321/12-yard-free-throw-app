@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:free_throw_phone/Components/wave_app_bar.dart';
 
+import 'package:free_throw_phone/page/object_detection_page.dart';
+import 'package:free_throw_phone/Components/wave_app_bar.dart';
 import 'package:free_throw_phone/Components/gradient_render.dart';
 import 'package:free_throw_phone/Components/tweleve_grid_container.dart';
 
@@ -96,7 +97,10 @@ class SelectModePage extends StatelessWidget {
                 ),
                 SizedBox(height: screenHeight * 0.05),
                 TextButton(
-                  onPressed: null,
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ObjectDetectionPage()),
+                  ),
                   child: Text(
                     'Training Start',
                     textAlign: TextAlign.center,
