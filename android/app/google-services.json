@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "1042284281781",
+    "project_id": "yard-soccer-detection",
+    "storage_bucket": "yard-soccer-detection.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1042284281781:android:1b1c228aaf31e6e99263fc",
+        "android_client_info": {
+          "package_name": "com.example.a12_football_detect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1042284281781-4mqe0im9q9g1q32e6ca7hghpcg6poptt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDz6YkBNgZUagimhUadcdIAkeRZwKF73hA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1042284281781-4mqe0im9q9g1q32e6ca7hghpcg6poptt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1042284281781:android:536cd0dbf7aac5969263fc",
+        "android_client_info": {
+          "package_name": "com.example.free_throw_phone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1042284281781-4mqe0im9q9g1q32e6ca7hghpcg6poptt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDz6YkBNgZUagimhUadcdIAkeRZwKF73hA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1042284281781-4mqe0im9q9g1q32e6ca7hghpcg6poptt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
