@@ -1,33 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:free_throw_phone/Components/wave_app_bar.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class ResultDisplayPage extends StatelessWidget {
   const ResultDisplayPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
 
-    return FutureBuilder<DocumentSnapshot>(
-      future: users.doc("uGYGiUY907ERCgYxveEn").get(),
-      builder:
-          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-        if (snapshot.hasError) {
-          return Text("Something went wrong");
-        }
-
-        if (snapshot.hasData && !snapshot.data!.exists) {
-          return Text("Document does not exist");
-        }
-
-        if (snapshot.connectionState == ConnectionState.done) {
-          Map<String, dynamic> data =
-              snapshot.data!.data() as Map<String, dynamic>;
-          return Text("${data['player']} ${data['1']} ${data['2']}");
-        }
-
-        return Text("loading");
-      },
+    return Scaffold(
+      appBar: waveAppbar("Result Page"),
+      body: AnimationLimiter(
+        child: Column(
+          children: AnimationConfiguration.toStaggeredList(
+              duration: const Duration(milliseconds: 750),
+              childAnimationBuilder: (widget) => SlideAnimation(
+                    horizontalOffset: 50.0,
+                    child: FadeInAnimation(
+                      child: widget,
+                    ),
+                  ),
+              children: []),
+        ),
+      ),
     );
   }
 }
