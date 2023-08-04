@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 import 'package:free_throw_phone/page/data_reading_page.dart';
+import 'package:free_throw_phone/page/video_streaming_od_page.dart';
+
+
 import 'package:free_throw_phone/Components/wave_app_bar.dart';
 import 'package:free_throw_phone/Components/gradient_render.dart';
 import 'package:free_throw_phone/Components/tweleve_grid_container.dart';
@@ -99,7 +102,7 @@ class SelectModePage extends StatelessWidget {
                 TextButton(
                   onPressed: () => Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const DataReadingPage()),
+                    MaterialPageRoute(builder: (context) => const VideoStreamingOdPage()),
                   ),
                   child: Text(
                     'Training Start',
