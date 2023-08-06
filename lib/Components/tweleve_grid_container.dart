@@ -5,9 +5,10 @@ import 'goal_painter.dart';
 class TwelveGridContainer extends StatelessWidget {
   final double screenWidth;
   final double screenHeight;
+  final String gridMode;
 
   const TwelveGridContainer(
-      {Key? key, required this.screenWidth, required this.screenHeight})
+      {Key? key, required this.screenWidth, required this.screenHeight, required this.gridMode})
       : super(key: key);
 
   @override

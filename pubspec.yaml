@@ -47,6 +47,9 @@ dependencies:
   equatable: ^2.0.5
   permission_handler: ^10.4.3
 
+  # state mangement
+  provider: ^6.0.5
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

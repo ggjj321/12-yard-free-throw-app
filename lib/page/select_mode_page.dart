@@ -45,7 +45,10 @@ class SelectModePage extends StatelessWidget {
                 ),
                 SizedBox(height: screenHeight * 0.03),
                 TwelveGridContainer(
-                    screenWidth: screenWidth, screenHeight: screenHeight),
+                    screenWidth: screenWidth, 
+                    screenHeight: screenHeight,
+                    gridMode: "selectMode",
+                  ),
                 SizedBox(height: screenHeight * 0.03),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
