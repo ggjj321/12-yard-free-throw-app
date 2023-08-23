@@ -364,6 +364,7 @@ class _WebrtcStreamingToOdServerState extends State<WebrtcStreamingToOdServer>
                       ),
                     ),
                   ),
+                  const TextButton(onPressed: null, child: Text("socket button"))
                 ],
               ),
             ),

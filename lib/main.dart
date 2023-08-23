@@ -19,7 +19,7 @@ class FreeThrowApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
         title: "football",
-        home: ResultDisplayPage(),
+        home: SelectModePage(),
     );
   }
 }

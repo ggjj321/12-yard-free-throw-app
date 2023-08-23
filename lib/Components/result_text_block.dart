@@ -48,7 +48,7 @@ class ResultTextBlock extends StatelessWidget {
             textAlign: TextAlign.center,
             result,
             style: TextStyle(
-                fontSize: 40,
+                fontSize: 20,
                 foreground: Paint()
                   ..shader =
                       getLinearGradient(Colors.purple, Colors.blue, 0, 150)),
