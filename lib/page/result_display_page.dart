@@ -16,24 +16,23 @@ class ResultDisplayPage extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    CollectionReference users = FirebaseFirestore.instance.collection('soccer-shoot-datas');
+    CollectionReference users =
+        FirebaseFirestore.instance.collection('soccer-shoot-datas');
 
-    return FutureBuilder<QuerySnapshot>(
-      future: users.get(),
-      builder:
-          (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (snapshot.hasError) {
-          return Text("Something went wrong");
-        }
+    return Scaffold(
+      appBar: waveAppbar("Result Page"),
+      body: FutureBuilder<QuerySnapshot>(
+        future: users.get(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Text("Something went wrong");
+          }
 
-
-        if (snapshot.connectionState == ConnectionState.done) {
-          print(snapshot.data!.docs[0].data);
-          Map<String, dynamic> data =
-              snapshot.data!.docs[0].data() as Map<String, dynamic>;
-          return Scaffold(
-            appBar: waveAppbar("Result Page"),
-            body: AnimationLimiter(
+          if (snapshot.connectionState == ConnectionState.done) {
+            print(snapshot.data!.docs[0].data);
+            Map<String, dynamic> data =
+                snapshot.data!.docs[0].data() as Map<String, dynamic>;
+            return AnimationLimiter(
               child: Container(
                 margin: const EdgeInsets.all(20.0),
                 child: Column(
@@ -95,12 +94,14 @@ class ResultDisplayPage extends StatelessWidget {
                       ]),
                 ),
               ),
-            ),
+            );
+          }
+          return const Center(
+            child:
+                CircularProgressIndicator(color: Colors.blue, strokeWidth: 5),
           );
-        }
-
-        return Text("loading");
-      },
+        },
+      ),
     );
   }
 }
