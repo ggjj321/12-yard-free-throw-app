@@ -41,7 +41,7 @@ class ResultTextBlock extends StatelessWidget {
               fontSize: 20,
               foreground: Paint()
                 ..shader =
-                    getLinearGradient(Colors.purple, Colors.blue, 0, 150),
+                    getLinearGradient(Colors.purple, Colors.blue, 100, 250),
             ),
           ),
           Text(
@@ -51,7 +51,7 @@ class ResultTextBlock extends StatelessWidget {
                 fontSize: 20,
                 foreground: Paint()
                   ..shader =
-                      getLinearGradient(Colors.purple, Colors.blue, 0, 150)),
+                      getLinearGradient(Colors.purple, Colors.blue, 100, 250)),
           ),
         ],
       ),
