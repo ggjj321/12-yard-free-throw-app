@@ -23,7 +23,7 @@ class ResultDisplayPage extends StatelessWidget {
     return Scaffold(
       appBar: waveAppbar("Result Page"),
       body: FutureBuilder<QuerySnapshot>(
-        future: users.get(),
+        future: users.orderBy('created_at', descending: true).get(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return const Text("Something went wrong");
