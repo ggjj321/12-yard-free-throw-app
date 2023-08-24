@@ -48,7 +48,9 @@ class TwelveGridContainer extends StatelessWidget {
                           Container(
                             height: screenHeight * 0.0666,
                             width: screenWidth * 0.225,
-                            color: target == y * 4 + x + 1 ? const Color.fromARGB(100, 55, 1, 200) : Colors.white,
+                            color: target == y * 4 + x + 1
+                                ? const Color.fromARGB(100, 55, 1, 200)
+                                : Colors.white,
                             child:
                                 (gridShootData?[(y * 4 + x + 1).toString()] ==
                                         0)
@@ -81,6 +83,9 @@ class TwelveGridContainer extends StatelessWidget {
                           SizedBox(
                             height: screenHeight * 0.0666,
                             width: screenWidth * 0.225,
+                            child: InkWell(
+                              onTap: () {},
+                            ),
                           )
                       ],
                     ),
