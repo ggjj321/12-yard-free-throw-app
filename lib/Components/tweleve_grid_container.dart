@@ -8,13 +8,15 @@ class TwelveGridContainer extends StatelessWidget {
   final double screenHeight;
   final String gridMode;
   final Map<String, int>? gridShootData;
+  final int? target;
 
   const TwelveGridContainer(
       {Key? key,
       required this.screenWidth,
       required this.screenHeight,
       required this.gridMode,
-      this.gridShootData})
+      this.gridShootData,
+      this.target})
       : super(key: key);
 
   @override
@@ -43,9 +45,10 @@ class TwelveGridContainer extends StatelessWidget {
                     Row(
                       children: [
                         for (int x = 0; x < 4; x++)
-                          SizedBox(
+                          Container(
                             height: screenHeight * 0.0666,
                             width: screenWidth * 0.225,
+                            color: target == y * 4 + x + 1 ? const Color.fromARGB(100, 55, 1, 200) : Colors.white,
                             child:
                                 (gridShootData?[(y * 4 + x + 1).toString()] ==
                                         0)

@@ -33,6 +33,8 @@ class ResultDisplayPage extends StatelessWidget {
             Map<String, dynamic> data =
                 snapshot.data!.docs[0].data() as Map<String, dynamic>;
             Map<String, dynamic> gridShootData = jsonDecode(data["grid_shoot_data"] as String) as Map<String, dynamic>;
+
+
             return AnimationLimiter(
               child: Container(
                 margin: const EdgeInsets.all(20.0),
@@ -65,6 +67,7 @@ class ResultDisplayPage extends StatelessWidget {
                           screenWidth: screenWidth,
                           gridMode: "displayMode",
                           gridShootData: gridShootData.map((key, value) => MapEntry(key, value as int)),
+                          target: data["target"] as int,
                         ),
                         SizedBox(
                           height: screenHeight * 0.03,

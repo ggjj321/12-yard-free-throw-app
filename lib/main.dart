@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:free_throw_phone/page/select_mode_page.dart';
 import 'package:free_throw_phone/page/result_display_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:free_throw_phone/provider/target_provider.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -9,7 +11,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const FreeThrowApp());
+  runApp(MultiProvider(
+    providers: [ChangeNotifierProvider(create: (context) => TargetProvider())],
+    child: const FreeThrowApp(),
+  ));
 }
 
 class FreeThrowApp extends StatelessWidget {
@@ -18,9 +23,8 @@ class FreeThrowApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-        title: "football",
-        home: SelectModePage(),
+      title: "football",
+      home: SelectModePage(),
     );
   }
 }
-
