@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'goal_painter.dart';
 import 'package:free_throw_phone/Components/gradient_render.dart';
+
+import 'package:free_throw_phone/provider/target_provider.dart';
 
 class TwelveGridContainer extends StatelessWidget {
   final double screenWidth;
@@ -74,22 +77,37 @@ class TwelveGridContainer extends StatelessWidget {
                     ),
                 ],
               )
-            : Column(
-                children: [
-                  for (int y = 0; y < 3; y++)
-                    Row(
-                      children: [
-                        for (int x = 0; x < 4; x++)
-                          SizedBox(
-                            height: screenHeight * 0.0666,
-                            width: screenWidth * 0.225,
-                            child: InkWell(
-                              onTap: () {},
-                            ),
-                          )
-                      ],
-                    ),
-                ],
+            : Consumer<TargetProvider>(
+                builder: (context, targetProvider, child) {
+                  return Column(
+                    children: [
+                      for (int y = 0; y < 3; y++)
+                        Row(
+                          children: [
+                            for (int x = 0; x < 4; x++)
+                              Container(
+                                height: screenHeight * 0.0666,
+                                width: screenWidth * 0.225,
+                                color: ((Provider.of<TargetProvider>(context,
+                                                    listen: false)
+                                                .targetX ==x) &
+                                        (Provider.of<TargetProvider>(context,
+                                                    listen: false)
+                                                .targetY ==y))
+                                    ? const Color.fromARGB(100, 55, 1, 200)
+                                    : Colors.white,
+                                child: InkWell(
+                                  onTap: () => Provider.of<TargetProvider>(
+                                          context,
+                                          listen: false)
+                                      .setTarget(x, y),
+                                ),
+                              ),
+                          ],
+                        ),
+                    ],
+                  );
+                },
               ),
       ),
     );

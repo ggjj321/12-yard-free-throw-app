@@ -61,7 +61,7 @@ class SelectModePage extends StatelessWidget {
                       icon: const Icon(
                         Icons.remove,
                       ),
-                      tooltip: 'Choose Video',
+                      tooltip: 'Decrease',
                       onPressed: () =>
                           Provider.of<TotalShootTime>(context, listen: false)
                               .decreaseTime(),
@@ -83,7 +83,7 @@ class SelectModePage extends StatelessWidget {
                     IconButton(
                       iconSize: 50,
                       icon: const Icon(Icons.add),
-                      tooltip: 'Use Camera',
+                      tooltip: 'Add',
                       onPressed: () =>
                           Provider.of<TotalShootTime>(context, listen: false)
                               .addTime(),
