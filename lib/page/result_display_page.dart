@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:free_throw_phone/Components/wave_app_bar.dart';
@@ -25,13 +26,13 @@ class ResultDisplayPage extends StatelessWidget {
         future: users.get(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
-            return Text("Something went wrong");
+            return const Text("Something went wrong");
           }
 
           if (snapshot.connectionState == ConnectionState.done) {
-            print(snapshot.data!.docs[0].data);
             Map<String, dynamic> data =
                 snapshot.data!.docs[0].data() as Map<String, dynamic>;
+            Map<String, dynamic> gridShootData = jsonDecode(data["grid_shoot_data"] as String) as Map<String, dynamic>;
             return AnimationLimiter(
               child: Container(
                 margin: const EdgeInsets.all(20.0),
@@ -63,6 +64,7 @@ class ResultDisplayPage extends StatelessWidget {
                           screenHeight: screenHeight,
                           screenWidth: screenWidth,
                           gridMode: "displayMode",
+                          gridShootData: gridShootData.map((key, value) => MapEntry(key, value as int)),
                         ),
                         SizedBox(
                           height: screenHeight * 0.03,

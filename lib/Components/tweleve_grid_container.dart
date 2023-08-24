@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 
 import 'goal_painter.dart';
+import 'package:free_throw_phone/Components/gradient_render.dart';
 
 class TwelveGridContainer extends StatelessWidget {
   final double screenWidth;
   final double screenHeight;
   final String gridMode;
+  final Map<String, int>? gridShootData;
 
   const TwelveGridContainer(
-      {Key? key, required this.screenWidth, required this.screenHeight, required this.gridMode})
+      {Key? key,
+      required this.screenWidth,
+      required this.screenHeight,
+      required this.gridMode,
+      this.gridShootData})
       : super(key: key);
 
   @override
@@ -30,20 +36,53 @@ class TwelveGridContainer extends StatelessWidget {
       ),
       child: CustomPaint(
         foregroundPainter: GoalPainter.uploadMode(),
-        child: Column(
-          children: [
-            for (int y = 0; y < 3; y++)
-              Row(
+        child: ((gridMode == "displayMode") & (gridShootData != null))
+            ? Column(
                 children: [
-                  for (int x = 0; x < 4; x++)
-                    SizedBox(
-                      height: screenHeight * 0.0666,
-                      width: screenWidth * 0.225,
-                    )
+                  for (int y = 0; y < 3; y++)
+                    Row(
+                      children: [
+                        for (int x = 0; x < 4; x++)
+                          SizedBox(
+                            height: screenHeight * 0.0666,
+                            width: screenWidth * 0.225,
+                            child:
+                                (gridShootData?[(y * 4 + x + 1).toString()] ==
+                                        0)
+                                    ? const Text("")
+                                    : Center(
+                                        child: Text(
+                                          "${gridShootData?[(y * 4 + x + 1).toString()]}",
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            foreground: Paint()
+                                              ..shader = getLinearGradient(
+                                                  Colors.purple,
+                                                  Colors.blue,
+                                                  100,
+                                                  250),
+                                          ),
+                                        ),
+                                      ),
+                          ),
+                      ],
+                    ),
+                ],
+              )
+            : Column(
+                children: [
+                  for (int y = 0; y < 3; y++)
+                    Row(
+                      children: [
+                        for (int x = 0; x < 4; x++)
+                          SizedBox(
+                            height: screenHeight * 0.0666,
+                            width: screenWidth * 0.225,
+                          )
+                      ],
+                    ),
                 ],
               ),
-          ],
-        ),
       ),
     );
   }
