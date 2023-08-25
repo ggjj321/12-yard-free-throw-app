@@ -244,7 +244,7 @@ class _WebrtcStreamingToOdServerState extends State<WebrtcStreamingToOdServer>
                       // height: MediaQuery.of(context).size.width > 500
                       //     ? 500
                       //     : MediaQuery.of(context).size.width - 20,
-                      constraints: BoxConstraints(maxHeight: 500),
+                      constraints: const BoxConstraints(maxHeight: 500),
                       // width: MediaQuery.of(context).size.width > 500
                       //     ? 500
                       //     : MediaQuery.of(context).size.width - 20,
@@ -256,7 +256,7 @@ class _WebrtcStreamingToOdServerState extends State<WebrtcStreamingToOdServer>
                               child: Container(
                                 color: Colors.black,
                                 child: _loading
-                                    ? Center(
+                                    ? const Center(
                                         child: CircularProgressIndicator(
                                           strokeWidth: 4,
                                         ),
@@ -279,7 +279,7 @@ class _WebrtcStreamingToOdServerState extends State<WebrtcStreamingToOdServer>
                                         height: 50,
                                         width: 50,
                                         color: Colors.black26,
-                                        child: Center(
+                                        child: const Center(
                                           child: Icon(
                                             Icons.cameraswitch,
                                             color: Colors.grey,
@@ -292,41 +292,6 @@ class _WebrtcStreamingToOdServerState extends State<WebrtcStreamingToOdServer>
                           ],
                         ),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Wrap(
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text("Transformation: "),
-                            DropdownButton(
-                              value: transformType,
-                              onChanged: (value) {
-                                setState(() {
-                                  transformType = value.toString();
-                                });
-                              },
-                              items: ["none", "edges", "cartoon", "rotate"]
-                                  .map(
-                                    (e) => DropdownMenuItem(
-                                      value: e,
-                                      child: Text(
-                                        e,
-                                      ),
-                                    ),
-                                  )
-                                  .toList(),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                      ],
                     ),
                   ),
                   Expanded(child: Container()),
@@ -349,13 +314,13 @@ class _WebrtcStreamingToOdServerState extends State<WebrtcStreamingToOdServer>
                         padding: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 5),
                         child: _loading
-                            ? Padding(
-                                padding: const EdgeInsets.all(8.0),
+                            ? const Padding(
+                                padding: EdgeInsets.all(8.0),
                                 child: CircularProgressIndicator(),
                               )
                             : Text(
                                 _inCalling ? "STOP" : "START",
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 24,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,

@@ -95,7 +95,7 @@ class SelectModePage extends StatelessWidget {
                   onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const ResultDisplayPage()),
+                        builder: (context) => const VideoStreamingOdPage()),
                   ),
                   child: Text(
                     'Training Start',
