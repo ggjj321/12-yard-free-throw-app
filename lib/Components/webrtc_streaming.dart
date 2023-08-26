@@ -147,7 +147,7 @@ class _WebrtcStreamingToOdServerState extends State<WebrtcStreamingToOdServer>
     int? targetY = Provider.of<TargetProvider>(context, listen: false).targetY;
 
     if ((targetX != null) & (targetY != null)) {
-      int target = targetY! * 4 + targetX!;
+      int target = targetY! * 4 + targetX! + 1;
 
       final response = await http.get(
           Uri.parse('$serverIp:80/get_shoot_result/$totalShoottime/$target'));
