@@ -3,12 +3,19 @@ import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
+
+import 'package:free_throw_phone/provider/target_provider.dart';
+import 'package:free_throw_phone/provider/total_shoot_time_provider.dart';
+
+import '../page/result_display_page.dart';
 
 class WebrtcStreamingToOdServer extends StatefulWidget {
   const WebrtcStreamingToOdServer({super.key});
 
   @override
-  State<WebrtcStreamingToOdServer> createState() => _WebrtcStreamingToOdServerState();
+  State<WebrtcStreamingToOdServer> createState() =>
+      _WebrtcStreamingToOdServerState();
 }
 
 class _WebrtcStreamingToOdServerState extends State<WebrtcStreamingToOdServer>
@@ -28,6 +35,8 @@ class _WebrtcStreamingToOdServerState extends State<WebrtcStreamingToOdServer>
   bool _inCalling = false;
 
   bool _loading = false;
+
+  String serverIp = "http://192.168.1.103";
 
   Future<void> initLocalRenderers() async {
     await _localRenderer.initialize();
@@ -99,7 +108,7 @@ class _WebrtcStreamingToOdServerState extends State<WebrtcStreamingToOdServer>
           var request = http.Request(
             'POST',
             Uri.parse(
-                'http://192.168.1.154:8080/offer'), // CHANGE URL HERE TO LOCAL SERVER
+                '$serverIp:8080/offer'), // CHANGE URL HERE TO LOCAL SERVER
           );
           request.body = json.encode(
             {
@@ -120,7 +129,8 @@ class _WebrtcStreamingToOdServerState extends State<WebrtcStreamingToOdServer>
             print(dataMap);
             await _peerConnection!.setRemoteDescription(
               RTCSessionDescription(
-                dataMap["sdp"], // Some problems in Visual Studio Code are causing error warnings.
+                dataMap[
+                    "sdp"], // Some problems in Visual Studio Code are causing error warnings.
                 dataMap["type"],
               ),
             );
@@ -128,6 +138,31 @@ class _WebrtcStreamingToOdServerState extends State<WebrtcStreamingToOdServer>
             print(response.reasonPhrase);
           }
         });
+  }
+
+  Future<void> _sendTargetAndTotalTimes() async {
+    int totalShoottime =
+        Provider.of<TotalShootTime>(context, listen: false).totalShoottime;
+    int? targetX = Provider.of<TargetProvider>(context, listen: false).targetX;
+    int? targetY = Provider.of<TargetProvider>(context, listen: false).targetY;
+
+    if ((targetX != null) & (targetY != null)) {
+      int target = targetY! * 4 + targetX!;
+
+      final response = await http.get(
+          Uri.parse('$serverIp:80/get_shoot_result/$totalShoottime/$target'));
+
+      if (response.statusCode == 200) {
+        _stopCall();
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const ResultDisplayPage()),
+        );
+      } else {
+        print(response);
+        throw Exception('Failed to load data');
+      }
+    }
   }
 
   Future<void> _makeCall() async {
@@ -195,6 +230,8 @@ class _WebrtcStreamingToOdServerState extends State<WebrtcStreamingToOdServer>
       _inCalling = true;
       _loading = false;
     });
+
+    _sendTargetAndTotalTimes();
   }
 
   Future<void> _stopCall() async {
@@ -211,7 +248,6 @@ class _WebrtcStreamingToOdServerState extends State<WebrtcStreamingToOdServer>
       _inCalling = false;
     });
   }
-
 
   @override
   void initState() {
@@ -329,7 +365,8 @@ class _WebrtcStreamingToOdServerState extends State<WebrtcStreamingToOdServer>
                       ),
                     ),
                   ),
-                  const TextButton(onPressed: null, child: Text("socket button"))
+                  const TextButton(
+                      onPressed: null, child: Text("socket button"))
                 ],
               ),
             ),
